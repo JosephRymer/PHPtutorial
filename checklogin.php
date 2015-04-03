@@ -5,10 +5,8 @@
 		$password=""; // Mysql password 
 		$db_name="validation"; // Database name 
 		$tbl_name="users"; // Table name 
-// Connect to server and select databse.
-	mysql_connect("$host", "$username", "$password")or die("cannot connect"); 
-	mysql_select_db("$db_name")or die("cannot select DB");
-
+// Connect to server 
+	require_once('mysqli_connect.php');
 
 // username and password sent from form as well as comparsion is done in this segmant
 	$myusername=$_POST['student_id']; 

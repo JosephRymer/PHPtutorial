@@ -57,7 +57,7 @@
             Zip ='".$zip."',
             userpassword =PASSWORD('".$password."') WHERE student_id='".$_SESSION["myusername"]."'";
 
-        $stmt=mysqli_prepare($dbc, $query);
+        $stmt=mysqli_prepare($query);
 
         mysqli_stmt_execute($stmt);
 

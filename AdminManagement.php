@@ -1,17 +1,15 @@
 <?php  
-  require_once('mysqli_connect.php');
-
-  $dbc = @mysqli_connect(db_host,db_user,db_password,db_database) OR die('Could not Connect to mySQL' . mysqli_connect_error());
-
-  $query="select First_Name , Last_Name, Email, Phone_Number, Address,City,State,Zip,status,student_id, Admin from users";
+ require_once('mysqli_connect.php');
 
 
-  $response = @mysqli_query($dbc, $query);
+ $sql="select First_Name , Last_Name, Email, Phone_Number, Address,City,State,Zip,status,student_id, Admin from users";
+
+
    if($_REQUEST["activesearch"]=="1"){
-   $query="SELECT * FROM users WHERE First_Name='".$_POST['search']."'";
-  $response = @mysqli_query($dbc, $query);
+   $sql="SELECT * FROM users WHERE First_Name='".$_POST['search']."'";
  }
-  session_start();
+ // session_start();
+
 ?>
 <html>
   <title>Validation Server</title>
@@ -63,7 +61,8 @@
             </thead>
             <tbody>
              <?php
-              while($row=mysqli_fetch_array($response))
+              if($result=$conn->query($sql)){
+               while ($row = $result->fetch_assoc()) 
               {
                 echo'<tr>'.
                 '<td>' . $row['First_Name'].'</td>'.
@@ -89,7 +88,8 @@
                 {
                  echo "<td> Yes <a href='AdminStatusFunctions.php?AdminYes=1&student_id=" .  $row['student_id']  . "' class='btn btn-primary btn-xs' role='button'>Remove Admin Rights</a></td> ";
                 }
-              }
+              }}
+              
             ?>
         </tbody>
       </table>

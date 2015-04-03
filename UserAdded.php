@@ -85,10 +85,10 @@
         $uniqueID="{$fshort}{$l_name}{$random}";
       }
       require_once('mysqli_connect.php');
-      //echo "imhere";
+
       $query="insert into users (First_Name,Last_Name,Email,Phone_Number,Address,City,State,Zip,student_ID,date_entered,userpassword,Expire_Time) 
       values ('".$f_name."','".$l_name."','".$email."','".$phone."','".$address."','".$city."','".$state."','".$zip."','".$uniqueID."',(UNIX_TIMESTAMP(NOW())),PASSWORD('".$password."'),'".$expire."')";
-      // echo $query;
+
       $stmt=mysqli_prepare($dbc, $query);
       mysqli_stmt_execute($stmt);
       $affected_rows = mysqli_stmt_affected_rows($stmt);
