@@ -1,15 +1,17 @@
 <?php  
- require_once('mysqli_connect.php');
+  require_once('mysqli_connect.php');
 
 
- $sql="select First_Name , Last_Name, Email, Phone_Number, Address,City,State,Zip,status,student_id, Admin from users";
+
+  $query="select First_Name , Last_Name, Email, Phone_Number, Address,City,State,Zip,status,student_id, Admin from users";
 
 
+  $response = @mysqli_query($dbc, $query);
    if($_REQUEST["activesearch"]=="1"){
-   $sql="SELECT * FROM users WHERE First_Name='".$_POST['search']."'";
+   $query="SELECT * FROM users WHERE First_Name='".$_POST['search']."'";
+  $response = @mysqli_query($dbc, $query);
  }
- // session_start();
-
+  session_start();
 ?>
 <html>
   <title>Validation Server</title>
@@ -61,8 +63,7 @@
             </thead>
             <tbody>
              <?php
-              if($result=$conn->query($sql)){
-               while ($row = $result->fetch_assoc()) 
+              while($row=mysqli_fetch_array($response))
               {
                 echo'<tr>'.
                 '<td>' . $row['First_Name'].'</td>'.
@@ -88,8 +89,7 @@
                 {
                  echo "<td> Yes <a href='AdminStatusFunctions.php?AdminYes=1&student_id=" .  $row['student_id']  . "' class='btn btn-primary btn-xs' role='button'>Remove Admin Rights</a></td> ";
                 }
-              }}
-              
+              }
             ?>
         </tbody>
       </table>

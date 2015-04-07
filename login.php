@@ -1,7 +1,3 @@
-<?php  
- //Helps to clear out any old session items fform the cahce so it is more secure
- session_destroy();
-?>
 <html>
   <title>Validation Server</title>
     <head>
