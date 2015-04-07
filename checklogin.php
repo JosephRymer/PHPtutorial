@@ -1,20 +1,19 @@
 <?php
 	session_start();
-	
+		$host="localhost"; // Host name 
+		$username="root"; // Mysql username 
+		$password=""; // Mysql password 
+		$db_name="validation"; // Database name 
+		$tbl_name="users"; // Table name 
 // Connect to server 
 	require_once('mysqli_connect.php');
-	//$dbc = @mysql_connect(,,,db_database) OR die('Could not Connect to mySQL' . mysql_connect_error());
-
-	$dbc = mysql_connect(db_host,db_user,db_password);
-    mysql_select_db(db_database, $dbc);
-
 
 // username and password sent from form as well as comparsion is done in this segmant
 	$myusername=$_POST['student_id']; 
 	$mypassword=$_POST['userpassword']; 
 		$query="SELECT * FROM users WHERE student_id='$myusername' and userpassword=PASSWORD('$mypassword')";
 		//echo $query;
-		$result=mysql_query($query,$dbc);
+		$result=mysql_query($query);
 // Mysql_num_row is counting table row
 	$count=mysql_num_rows($result);
 	//echo $count;

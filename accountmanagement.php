@@ -1,13 +1,12 @@
 <?php
   require_once('mysqli_connect.php');
 
-  $dbc = @mysqli_connect(db_host,db_user,db_password,db_database) OR die('Could not Connect to mySQL' . mysqli_connect_error());
 
   session_start();
 
   $query="SELECT *FROM users  WHERE student_id='".$_SESSION["myusername"]."'";
 
-  $response = @mysqli_query($dbc, $query);
+  $response = @mysqli_query($query);
 ?>
 <html>
   <title>Validation Server</title>
@@ -40,12 +39,11 @@
                     echo'<a href="AdminManagment.php" class="btn pull-right btn-info" role="button">Admin Management </a>';
                   }
                 }
-                require_once('mysqli_connect.php');
-                //$dbc = @mysqli_connect(db_host,db_user,db_password,db_database) OR die('Could not Connect to mySQL' . mysqli_connect_error());
+
 
                 $query="select First_Name,Last_Name,Email,Phone_Number,Address,City,State,Zip from users  where student_id='".$_SESSION["myusername"]."'";
 
-                $response = @mysqli_query($dbc, $query);
+                $response = @mysqli_query($query);
                 $row=mysqli_fetch_array($response);
               ?>
             </div>
