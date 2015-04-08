@@ -65,7 +65,7 @@
 
         if(mysql_affected_rows() == 0)
         {  
-         mysqli_stmt_close($stmt);
+        
         }   
         // print_r ($_SESSION);
 

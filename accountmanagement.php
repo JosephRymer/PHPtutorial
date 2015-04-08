@@ -37,7 +37,7 @@
                 {
                   if($row['Admin']=='1')//If there an Admin will echo a button for them to direct to Admin Managment
                   {  
-                    echo'<a href="AdminManagment.php" class="btn pull-right btn-info" role="button">Admin Management </a>';
+                    echo'<a href="AdminManagement.php" class="btn pull-right btn-info" role="button">Admin Management </a>';
                   }
                 }
                 require_once('mysqli_connect.php');
@@ -48,6 +48,7 @@
                 $response = @mysqli_query($dbc, $query);
                 $row=mysqli_fetch_array($response);
               ?>
+              <a href="checklogin.php?logout=1" class="btn  btn-primary " role="button">logout</a>&nbsp
             </div>
             <ul class="breadcrumb">
               <a href="http://library.tamu.edu/">University Libraries</a>

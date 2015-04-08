@@ -6,10 +6,10 @@
   $query="select First_Name , Last_Name, Email, Phone_Number, Address,City,State,Zip,status,student_id, Admin from users";
 
 
-  $response = @mysqli_query($dbc, $query);
+  $response = mysql_query( $query);
    if($_REQUEST["activesearch"]=="1"){
    $query="SELECT * FROM users WHERE First_Name='".$_POST['search']."'";
-  $response = @mysqli_query($dbc, $query);
+  $response = mysql_query( $query);
  }
   session_start();
 ?>
@@ -35,7 +35,9 @@
                 <form action="AdminManagement.php?activesearch=1" method="POST" class="control form-inline" style="float:right;">
                  <input type="text" class="form-control" name="search" placeholder="Search">
                  <input type="submit"  class="btn btn-default">
-                 &nbsp<a href="refreshlist.php" class="btn pull-right btn-primary " role="button">Refresh List</a>                    
+                 &nbsp<a href="refreshlist.php" class="btn pull-right btn-primary " role="button">Refresh List</a>
+
+
                 </form>
               <ul class="breadcrumb">
                 <a href="http://library.tamu.edu/">University Libraries</a> >
@@ -63,7 +65,7 @@
             </thead>
             <tbody>
              <?php
-              while($row=mysqli_fetch_array($response))
+              while($row=mysql_fetch_array($response))
               {
                 echo'<tr>'.
                 '<td>' . $row['First_Name'].'</td>'.
@@ -84,15 +86,16 @@
                 }
                 if($row['Admin']=='0')
                 {
-                 echo "<td> No <a href='AdminStatusFunctions.php?AdminNo=1&student_id=" .  $row['student_id']  . "' class='btn btn-primary btn-xs' role='button'>Give Admin Rigts</a></td> ";
+                 echo "<td> No <a href='AdminStatusFunctions.php?AdminAdd=1&student_id=" .  $row['student_id']  . "' class='btn btn-primary btn-xs' role='button'>Give Admin Rigts</a></td> ";
                 }else
                 {
-                 echo "<td> Yes <a href='AdminStatusFunctions.php?AdminYes=1&student_id=" .  $row['student_id']  . "' class='btn btn-primary btn-xs' role='button'>Remove Admin Rights</a></td> ";
+                 echo "<td> Yes <a href='AdminStatusFunctions.php?AdminRemove=1&student_id=" .  $row['student_id']  . "' class='btn btn-primary btn-xs' role='button'>Remove Admin Rights</a></td> ";
                 }
               }
             ?>
         </tbody>
       </table>
+       <a href="checklogin.php?logout=1" class="btn btn-sm pull-right btn-primary " role="button">logout</a>
     </div>
   </body> 
   <div class="container text-center"> 

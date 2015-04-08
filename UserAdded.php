@@ -94,7 +94,7 @@
       $affected_rows = mysqli_stmt_affected_rows($stmt);
       if(mysql_affected_rows() == 0)
       {
-       mysqli_stmt_close($stmt);
+     
        session_start();
        $_SESSION['name']=$uniqueID;
        header("location:index.php?added=true");
@@ -102,9 +102,9 @@
       {
        echo'Error Occurred<br />';
        echo mysqli_error();
-       mysqli_stmt_close($stmt);
+      
       }
-       mysqli_close($dbc);
+      
     ?>  
   </body>
 </html>
