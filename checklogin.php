@@ -10,23 +10,29 @@
 
 
 // username and password sent from form as well as comparsion is done in this segmant
-	$myusername=$_POST['student_id']; 
-	$mypassword=$_POST['userpassword']; 
-		$query="SELECT * FROM users WHERE student_id='$myusername' and userpassword=PASSWORD('$mypassword')";
-		//echo $query;
-		$result=mysql_query($query,$dbc);
-// Mysql_num_row is counting table row
-	$count=mysql_num_rows($result);
-	//echo $count;
-	//redirect for the page on false or postive credentials
-	if($count==1){
+	
+	    $myusername=$_POST['student_id']; 
+	    $mypassword=$_POST['userpassword']; 
 
-// Register $myusername,  and redirect to file "login_success.php"
-	$_SESSION["myusername"] = $myusername;
- //print_r ($_SESSION);
-		header("location:accountmanagement.php");
-	}else{
-		header("location:login.php?badlogin=True");
-	}
+		 $query="SELECT * FROM users Admin WHERE student_id='$myusername' and userpassword=PASSWORD('$mypassword')";
+
+		$result=mysql_query($query,$dbc);
+         $row = mysql_fetch_row($result);
+	     $count=mysql_num_rows($result);
+         $_SESSION["myusername"] = $myusername;
+	//redirect for the page on false or postive credentials
+	if($count==1 && $row[12]=="0")
+	{
+		$_SESSION["secure"]="12145";
+	 header("location:accountmanagement.php");
+	}else if ($count==1 && $row[12]=="1")
+	{
+		$_SESSION["secure"]="12145";
+     header("location:AdminManagement.php");
+    }else
+    {
+    	$_SESSION["secure"]="12145";
+     header("location:login.php?badlogin=True");
+    }
 }
 ?>

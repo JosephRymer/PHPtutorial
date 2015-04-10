@@ -1,9 +1,11 @@
 <?php
+   session_start();
+   if($_SESSION["secure"]=="12145"){
   require_once('mysqli_connect.php');
 
   $dbc = @mysqli_connect(db_host,db_user,db_password,db_database) OR die('Could not Connect to mySQL' . mysqli_connect_error());
 
-  session_start();
+  
 
   $query="SELECT *FROM users  WHERE student_id='".$_SESSION["myusername"]."'";
 
@@ -117,3 +119,4 @@
     </footer>
   </div>
 </html>
+<?php } ?>

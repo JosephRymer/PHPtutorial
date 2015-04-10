@@ -1,4 +1,6 @@
 <?php  
+   session_start();
+   if($_SESSION["secure"]=="12145"){
   require_once('mysqli_connect.php');
 
 
@@ -111,3 +113,4 @@
     </footer>
   </div>
 </html>
+<?php  } ?>

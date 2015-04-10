@@ -1,4 +1,9 @@
-<?php //Runs the expiration Method for determining if a user is still Active
+<?php 
+    session_start();
+   if($_SESSION["secure"]=="12145"){
+
+
+//Runs the expiration Method for determining if a user is still Active
 
 require_once('mysqli_connect.php');
     $query="select date_entered , student_id from users ";
@@ -23,3 +28,4 @@ require_once('mysqli_connect.php');
 <html>
   <meta http-equiv="refresh" content="0; url=AdminManagement.php" /> 
 </html>
+<?php  } ?>

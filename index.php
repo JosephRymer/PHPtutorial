@@ -23,6 +23,7 @@
           <div class="color-field">
             <div class="row-fluid">
               <div class="span12 pull left breadcrumb">
+                 <a href="login.php?AdminLogin=1" class="btn btn-info btn pull-right" role="button"> Admin Login</a>
                 <ul class="breadcrumb">
                   <a href="http://library.tamu.edu/">University Libraries</a>
                   >

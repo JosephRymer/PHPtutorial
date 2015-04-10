@@ -1,4 +1,6 @@
 <?php
+   session_start();
+   if($_SESSION["secure"]=="12145"){
   require_once('mysqli_connect.php');
 
   session_start();
@@ -53,3 +55,4 @@
 <html>
 <meta http-equiv="refresh" content="0; url=AdminManagement.php" />
 </html>
+<?php  } ?>
