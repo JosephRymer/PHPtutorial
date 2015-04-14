@@ -1,5 +1,6 @@
 <?php
   if($_REQUEST["logout"]=="1"){
+  	session_unset("secure");
   	session_destroy();
  header("location:index.php");
   }else{
