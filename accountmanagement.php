@@ -3,13 +3,13 @@
    if($_SESSION["secure"]=="12145"){
   require_once('mysqli_connect.php');
 
-  $dbc = @mysqli_connect(db_host,db_user,db_password,db_database) OR die('Could not Connect to mySQL' . mysqli_connect_error());
+ // $dbc = @mysqli_connect(db_host,db_user,db_password,db_database) OR die('Could not Connect to mySQL' . mysqli_connect_error());
 
   
 
   $query="SELECT *FROM users  WHERE student_id='".$_SESSION["myusername"]."'";
 
-  $response = @mysqli_query($dbc, $query);
+  $response = mysql_query($query);
 ?>
 <html>
   <title>Validation Server</title>
@@ -35,20 +35,20 @@
           <div class="span12 pull left breadcrumb">
             <div class="control form-inline" style="float:right;">  
               <?php
-                while($row=mysqli_fetch_array($response))
+                while($row=mysql_fetch_array($response))
                 {
                   if($row['Admin']=='1')//If there an Admin will echo a button for them to direct to Admin Managment
                   {  
                     echo'<a href="AdminManagement.php" class="btn pull-right btn-info" role="button">Admin Management </a>';
                   }
                 }
-                require_once('mysqli_connect.php');
+               // require_once('mysqli_connect.php');
                 //$dbc = @mysqli_connect(db_host,db_user,db_password,db_database) OR die('Could not Connect to mySQL' . mysqli_connect_error());
 
                 $query="select First_Name,Last_Name,Email,Phone_Number,Address,City,State,Zip from users  where student_id='".$_SESSION["myusername"]."'";
 
-                $response = @mysqli_query($dbc, $query);
-                $row=mysqli_fetch_array($response);
+                $response = mysql_query($query);
+                $row=mysql_fetch_array($response);
               ?>
               <a href="checklogin.php?logout=1" class="btn  btn-primary " role="button">logout</a>&nbsp
             </div>
