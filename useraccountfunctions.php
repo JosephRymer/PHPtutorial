@@ -57,17 +57,7 @@
             Zip ='".$zip."',
             userpassword =PASSWORD('".$password."') WHERE student_id='".$_SESSION["myusername"]."'";
 
-        $stmt=mysqli_prepare($query);
-
-        mysqli_stmt_execute($stmt);
-
-        $affected_rows = mysqli_stmt_affected_rows($stmt);
-
-        if(mysql_affected_rows() == 0)
-        {  
-        
-        }   
-        // print_r ($_SESSION);
+       mysql_query($query)
 
 ?>
 <html>

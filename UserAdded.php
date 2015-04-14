@@ -85,13 +85,9 @@
         $uniqueID="{$fshort}{$l_name}{$random}";
       }
       require_once('mysqli_connect.php');
-      echo "Before query";
-      echo "<br>";
       $query="insert into users (First_Name,Last_Name,Email,Phone_Number,Address,City,State,Zip,student_ID,date_entered,userpassword,Expire_Time) 
       values ('".$f_name."','".$l_name."','".$email."','".$phone."','".$address."','".$city."','".$state."','".$zip."','".$uniqueID."',(UNIX_TIMESTAMP(NOW())),PASSWORD('".$password."'),'".$expire."')";
-      echo $query;
-
-      mysql_query($query);
+        mysql_query($query);
 
         if (mysql_affected_rows() > 0)  {
             session_start();
@@ -99,7 +95,7 @@
             header("location:index.php?added=true");
           } else  {
             echo'Error Occurred<br />';
-            echo mysqli_error();
+            
         }
       
     ?>  
